@@ -1,2 +1,2 @@
 # images_organizer
-python mini-project
+- Python mini-project
