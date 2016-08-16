@@ -14,7 +14,7 @@ def get_time_from_metadata(filename):
     filename, realname = unicodeFilename(filename), filename
     parser = createParser(filename, realname)
     if not parser:
-        print "Unable to parse file"
+        print >>stderr, "Unable to parse file"
         exit(1)
     try:
         metadata = extractMetadata(parser)
@@ -29,10 +29,11 @@ def get_time_from_metadata(filename):
     for k,v in metadata._Metadata__data.iteritems():
         if v.values:
             if v.key == 'creation_date':
-                res = v.values[0].value
+                res = str(v.values[0].value)
     if res!=None :
-        res = res.replace(':', '')
-        res = res.replace(' ', '') 
+        res = res.replace(':','')
+        res = res.replace('-','')
+        res = res.replace(' ','') 
     return res
 
 
@@ -70,11 +71,9 @@ print('For file ' + filename_4 + ' res = ' + str(res))
 
 
 print'################ BEGIN'
-file_path='C:\\Users\\Yassir\\Google Drive\\private\\projects\\python\\images_organizer\\tests\\'
-time=get_time_from_metadata(file_path+filename_1+'.jpg')
+file_path='C:\\Users\\Yassir\\my_images_organizer\\tests\\IMG_3435.jpg'
+time=get_time_from_metadata(file_path)
 print time
-time=get_time_from_metadata(file_path+filename_2+'.jpg')
-print time
-time=get_time_from_metadata(file_path+filename_3+'.jpg')
-print time
+print'################ END'
+
 

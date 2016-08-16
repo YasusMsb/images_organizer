@@ -7,8 +7,8 @@ process = subprocess.Popen(["python", "filter.py"], shell=False, stdout=subproce
 out, err = process.communicate("Processing ...")
 print ('########## Standard output : ')
 print out
-print ('########## Standard error : ')
-print err
+#print ('########## Standard error : ')
+#print err
 
 
 

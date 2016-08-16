@@ -51,8 +51,9 @@ def get_time_from_metadata(filename):
             if v.key == 'creation_date':
                 res = str(v.values[0].value)
     if res!=None :
-        aux = str(res.replace(":",""))
-        res = str(aux.replace(" ",""))
+        res = res.replace(':','')
+        res = res.replace('-','')
+        res = res.replace(' ','') 
     return res
 
 
@@ -87,7 +88,7 @@ def copy_file(orig,dest):
     except Exception,e:
         print ("Error while copying ",orig, " to ", dest)
         print str(e)
-        exit(1)
+        
 
 
 
