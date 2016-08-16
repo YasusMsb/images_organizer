@@ -86,7 +86,7 @@ def copy_file(orig,dest):
     try:
         shutil.copy(orig,dest)
     except Exception,e:
-        print ("Error while copying ",orig, " to ", dest)
+        print ("Error while copying %s to %s" % (orig, dest))
         print str(e)
         
 

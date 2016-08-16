@@ -25,7 +25,10 @@ def recursive_visit (files_path, built_name , dico ):
                         final_name = str(time_shot) + '_' + str(pre_final_name)
                         # Construction of the path
                         final_name=final_name.lower()
-                        built_path = built_name.replace('_','\\')+ final_name
+                        built_path = ''
+                        built_path = built_name.replace('_','\\')
+                        built_path = os.path.join(built_path, final_name)
+                        print ("Adding %s as path" %built_path )
                         dico[file_path]=built_path
 
 
@@ -48,12 +51,14 @@ def main():
         built_name = ''
         dico = {}
         print "#### Starting recursive visit ###"
-        recursive_visit (input_dir, built_name , dico )
+        path_to_visit = os.path.join(input_dir,user_dir)
+        recursive_visit (path_to_visit, built_name , dico )
         print "#### Starting serialization process ###"
         serialize_dico (dico, output_dir)
         print "#### Starting copy process ###"
-        final_path = os.path.join(output_dir,user_dir)
         for k,v in dico.items():
+                final_path=''
+                final_path = os.path.join(output_dir,user_dir)
                 final_path = os.path.join(final_path,v)
                 copy_file (k , final_path)
         exit(0)
